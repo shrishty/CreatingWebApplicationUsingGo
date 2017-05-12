@@ -1,7 +1,9 @@
 package main
 
 import (
-	"net/http"
+	"html/template"
+	"fmt"
+	"os"
 )
 
 // type myHandler struct {
@@ -16,8 +18,21 @@ func main() {
 	// http.Handle("/", &myHandler{greeting: "Hello"})
 	// http.ListenAndServe(":8000", nil)
 
-	http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello Shrishty!"))
-	})
-	http.ListenAndServe(":8000", nil)
+	// http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
+	// 	w.Write([]byte("Hello Shrishty!"))
+	// })
+	// http.ListenAndServe(":8000", nil)
+
+	templatestring := `Lemonade Stand Supply`
+	t, err := template.New("title").Parse(templatestring)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = t.Execute(os.Stdout, nil)
+
+	if err != nil {
+		fmt.Println(err)
+	}
 }
