@@ -42,14 +42,14 @@ To run the application:
 
 # Our First program
 
-`
+```
 package main
 
 func main() {
     println("Hello Go!!")
 }
 
-`
+```
 # Running the program
 * `go run src/main.go`
 or
@@ -57,19 +57,21 @@ or
 * run the exe file which is generated in the bin folder
 
 # The const keyword 
-
+```
 const (
     message = "Hello Go!!"
 )
+```
 
 * const variables cant be changed
 
 # Variables
-
+```
 var (
     message string = "Hello Go!!"
     newMessage string                  //  if not assigned returns empty sting. Go assigns zero value to the variables if not assinged
 )
+```
 
 
 # The init() function
@@ -82,17 +84,17 @@ var (
 * Tells go that this module needs to use funtions which are present in another module
 * There are two ways to use import
 
-`
+```
 import "fmt"
-`
+```
 
 or
 
-`
+```
 import (
     "fmt"
 )
-`
+```
 
 * if we are importing a package and not using it we will be compilation error
 
@@ -100,7 +102,14 @@ import (
 
 ## Primitive data types
 
-`var myInt int` ---  simplify the parsing of the source code
+```
+var myInt int            # simplify the parsing of the source code
+myInt = 5
+
+var myFloat float32
+
+```
+
 
 
 
