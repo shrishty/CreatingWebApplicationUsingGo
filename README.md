@@ -103,12 +103,119 @@ import (
 ## Primitive data types
 
 ```
-var myInt int            # simplify the parsing of the source code
+var myInt int             // simplify the parsing of the source code
 myInt = 5
 
-var myFloat float32
+var myFloat float32 = 42. // directly assigning during declaration
+
+str := "Hello Go!!"       // short variable declaration
+
+complexNum := complex(2, 3) // first class support for complex numbers, First argument is real and second one is imaginary.
+
+// To fetch the real part use real(complexNum)
+// To fetch the imaginary part use imag(complexNum)
 
 ```
+
+## Constants
+
+```
+const (
+    first = "first value"
+)
+```
+
+```
+const (
+    first = iota           // assign 0 to first, 1 to second and 2 to third
+    second
+    third
+)
+```
+
+### Constant expression
+
+```
+const (
+    first = 1 << (10 * iota)  // 2^0
+    second                    // 2^10
+    third                     // 2^100
+)
+```
+
+## Collections
+
+### Array
+
+```
+myArray := [3]int{}
+myArray[0] = 42
+myArray[1] = 27
+myArray[2] = ll
+
+fmt.Println(myArray)
+
+// Another way
+myArray := [...]int{42, 27, 99}
+
+// to print the size of the array
+sizeOFArray := len(myArray)
+```
+### Slice
+* More flexible than array
+
+```
+mySlice := myArray[:]                 // [1:], [:3]
+mySlice = append(mySlice, 100)
+
+mySlice  := []float32{14., 15., 16.}  
+// if more data gets added, slice has to copy the contents every time new data is added whcih is inefficient 
+fmt.Println(len(mySlice))
+
+// make takes 2 or three arguments
+// If two arguments then the second argument is the size of the slice and array both
+// If three arguments, second argument = size of the slice, third arguemnt = size of the array
+mySlice := make([]float32, 100)        
+
+```
+
+### Map
+* Customizable keys
+* both key and value can be arbitrary data types
+
+```
+myMap := make(map[int]string)         // int is the type of the key, string is type of the value
+myMap[42] = "Foo"
+myMap[12] = "Bar"
+
+fmt.Println(myMap)
+fmt.Println(myMap[42])
+```
+
+## Arithmatic Operations
+* Addition Operators or string concatenation operator
+* substraction operator
+* remainder operator 
+* increment operator 
+* decrement operator
+* Augmented assignment operator
+
+```
+add := 1 + 2
+str := "Foo" + "Bar"
+sub := 3 - 1
+reaminder := 12 % 4
+div : 12 / 4
+
+inc := 1
+inc++
+
+dec := 5
+dec--            // these are considered as statements and cannot be added with other operators 
+
+dec += 5         // augmented operations
+```
+
 
 
 
