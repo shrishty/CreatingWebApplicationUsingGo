@@ -216,10 +216,199 @@ dec--            // these are considered as statements and cannot be added with 
 dec += 5         // augmented operations
 ```
 
+# Branching and looping
 
+## Branching
 
+### if statement
 
+```
+if foo == 1 {
+    println("bar")
+} else {
+    println("lala")
+}
 
+// moving the initialization of foo inside if statement
 
+if foo := 1; foo == 1 {
+    println("foo is 1")
+}
 
+```
+
+### Switch statement
+
+```
+switch foo := 1; foo {
+    case 1:
+        println("one")
+    case 2: 
+        println("two")
+}
+
+switch {
+    case foo == 1:
+        println("one")
+    case foo > 2:
+        println("5")
+}
+```
+
+### Loops
+
+```
+for i:=0; i < 5; i++ {
+    println(i)
+}
+
+// while kind of for loop
+
+for {
+        i++
+        println(i)
+
+        if i > 5 {
+            break
+        }
+}
+
+// loopiing over collection
+
+s := []string{"foo", "bar", "buz"}
+
+for idx, v := range s {
+    println(idx, v)
+}
+
+myMap := make(map[int]string)         // int is the type of the key, string is type of the value
+myMap[42] = "Foo"
+myMap[12] = "Bar"
+
+for k, v := range m {
+    println(k, v)
+}
+
+```
+
+### To take input from the console
+```
+var option string
+
+fmt.Scanln(&option)               // sends the memory address to populate the value
+
+```
+
+# Function and Parameters
+
+* Pass by Value
+* Pass by reference
+* Variadic fnction
+
+```
+// defining a function
+func sayHello() {
+    println("Hello")
+}
+
+// calling a function
+func main() {
+    sayHello()
+}
+
+// finction with parameters, pass by value
+
+func sayHello(message string) {
+    println(message)
+}
+
+// func with parameters, pass by reference
+func sayHello(message *string) {
+    println(*message)                  // dereferencing of pointer
+    *message = "bye"
+}
+
+// variadic functions
+
+func sayHello (messages ...string) {
+    for _, message := range messages {
+        println(message)
+    }
+}
+
+```
+
+## Return values
+
+* Single return value
+* Multiple return value
+* Named return parameters
+
+```
+func add(terms ...int) int {
+    result := 0
+    for _, term := range terms {
+        result += term
+    }
+
+    return result
+}
+```
+
+## Multiple return values
+
+```
+func add(terms ...int) (int, int) {
+    result := 0
+    for _, term := range terms {
+        result += term
+    }
+
+    return len(terms), result
+}
+
+// calling function with multiple return values
+numTerms, sum := add(1, 2, 3, 4)
+```
+
+## Named return values
+
+```
+func add(terms ...int) (numTerms int, sum int) {
+    sum := 0
+    for _, term := range terms {
+        sum += term
+    }
+
+    numTerms = len(terms)
+
+    return
+}
+
+// calling function with multiple return values
+numTerms, sum := add(1, 2, 3, 4)
+```
+
+# Anonymous Functions
+* Functions are first class citizen
+
+```
+func main() {
+
+    addFunc := func(terms ...int) (numTerms int, sum int) {
+        sum := 0
+        for _, term := range terms {
+            sum += term
+        }
+
+        numTerms = len(terms)
+
+        return
+    }
+
+    numTerms, sum := addFunc(1, 3)
+}
+```
+
+# Object Oriented Programming 
 
