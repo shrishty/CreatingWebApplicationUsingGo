@@ -21,7 +21,7 @@ To run the application:
 * Go addresses challenges which is not addressed in any of the existing languages
 * Fully Compiled - Similar to C++
 * Simple - Python (No clutter, only 25 keyword)
-* Concurrency - Used by Erlang which handles 1,00,000 of sequential processes effortlessly (scaleing is better)
+* Concurrency - Used by Erlang which handles 1,00,000 of sequential processes effortlessly (scaling is better)
 * Statically typed language - variables need not be defined before they are used. 
 
 # To start
@@ -169,7 +169,7 @@ mySlice := myArray[:]                 // [1:], [:3]
 mySlice = append(mySlice, 100)
 
 mySlice  := []float32{14., 15., 16.}  
-// if more data gets added, slice has to copy the contents every time new data is added whcih is inefficient 
+// if more data gets added, slice has to copy the contents every time new data is added which is inefficient 
 fmt.Println(len(mySlice))
 
 // make takes 2 or three arguments
@@ -192,9 +192,9 @@ fmt.Println(myMap)
 fmt.Println(myMap[42])
 ```
 
-## Arithmatic Operations
+## Arithmetic Operations
 * Addition Operators or string concatenation operator
-* substraction operator
+* subtraction operator
 * remainder operator 
 * increment operator 
 * decrement operator
@@ -204,7 +204,7 @@ fmt.Println(myMap[42])
 add := 1 + 2
 str := "Foo" + "Bar"
 sub := 3 - 1
-reaminder := 12 % 4
+remainder := 12 % 4
 div : 12 / 4
 
 inc := 1
@@ -273,7 +273,7 @@ for {
         }
 }
 
-// loopiing over collection
+// looping over collection
 
 s := []string{"foo", "bar", "buz"}
 
@@ -303,7 +303,7 @@ fmt.Scanln(&option)               // sends the memory address to populate the va
 
 * Pass by Value
 * Pass by reference
-* Variadic fnction
+* Variadic function
 
 ```
 // defining a function
@@ -316,7 +316,7 @@ func main() {
     sayHello()
 }
 
-// finction with parameters, pass by value
+// function with parameters, pass by value
 
 func sayHello(message string) {
     println(message)
@@ -411,4 +411,46 @@ func main() {
 ```
 
 # Object Oriented Programming 
+
+## Structs and Fields
+
+```
+ 
+type myStruct struct {
+    myField string
+}
+
+// instantiating a struct variable
+foo := myStruct {}
+foo.myField = "bar"
+
+foo := mystruct{"bar"}
+
+// to create objects on heap
+foo := new(myStruct)
+foo.myField = "bar"
+```
+
+## Constructor Functions
+
+```
+type myStruct struct {
+    myMap map[string]string
+}
+
+func newMyStruct() *myStruct {
+    result := myStruct{}
+    result.myMap = map[string]string{}           // this is instantiating the map
+
+    return &result
+}
+
+// instantiation
+foo := newMyStruct()
+
+foo.myMap["bar"] = "baz"
+```
+
+## Methods
+
 
