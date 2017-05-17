@@ -453,4 +453,110 @@ foo.myMap["bar"] = "baz"
 
 ## Methods
 
+* Data is totally separated from the methods
+* We can declare the methods anywhere in the package
 
+```
+func main() {
+    mp := messagePrinter{"Foo"}
+    mp.printMessage()
+}
+
+
+type messagePrinter struct {
+    message string
+}
+
+func (mp *messagePrinter) printMessage() {
+    println(mp.message)
+}
+```
+
+## Object Composition 
+
+* instead of inheritance we have composition
+
+```
+func main() {
+    emp := enhancedMessagePrinter{}
+    emp.message = "foo"
+    emp.printMessage()
+
+    // or
+
+    emp := enhancedMessagePrinter{messagePrinter{"Foo"}}
+}
+
+type messagePrinter struct {
+    message string
+}
+
+func (mp *messagePrinter) printMessage() {
+    println(mp.message)
+}
+
+type enhancedMessagePrinter struct {
+    messagePrinter            // Anonymous field of messagePrinter type
+}
+```
+
+# Asynchronous Programming
+
+* goroutines - go's thread like construct to run code/functions concurrently 
+* channels - sharing data between threads 
+
+## Goroutines
+
+* concurrency is not parallelism 
+* Concurrency - only one thing is being run at a time
+* Parallelism - Multiple tasks run at same time
+* Parallel programming can be done by adding `runtime.GOMAXPROCS(8)` in the code
+
+```
+func main() {
+    abcGen()           // prints abc in order
+    go abcGen()        // if only this is written, nothing will be printer as main has terminated 
+
+    // so we must apply sleep for sometime to see the output
+    time.Sleep(100 * time.Millisecond)
+}
+
+func abcGen() {
+    for l := byte('a'); l < byte('z'); l++ {
+        go println(string(l))
+    }
+}
+```
+
+## Channels
+* Allows messages to be passed in go routines .
+* Ensures data is safely transferred 
+
+```
+func main() {
+    runtime.GOMAXPROCS(8)
+
+    ch := make(chan string)
+    doneCh := make(chan bool)
+
+    go abcGen(ch)         
+    go printer(ch, doneCh)
+
+    <-doneCh
+}
+
+func abcGen(ch chan string) {
+    for l := byte('a'); l < byte('z'); l++ {
+        ch <- string(l)
+    }
+    close(ch)
+}
+
+func printer(ch chan string, doneCh chan bool) {
+    for l := range ch {
+        println(<-ch)
+    }
+
+    doneCh <- true
+}
+```
